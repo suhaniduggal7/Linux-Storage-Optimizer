@@ -1,0 +1,45 @@
+# config.yaml - per-agent settings. Copy this file and edit it on
+# EVERY machine you want monitored - nothing else in agent/ needs to
+# change between machines.
+
+# Where the central Node Sanity server (server.py) is reachable.
+central_server: "http://localhost:8080"
+
+# How this agent identifies itself to the central server. Must be
+# unique across all agents - the central server uses it as the key
+# in agents.json and agent_reports/.
+hostname: "linux-agent-01"
+
+# How the CENTRAL server can call this agent back (for /execute).
+# If the central server and this agent are on different machines,
+# callback_host must be an address the central server can reach -
+# not "localhost".
+callback_host: "127.0.0.1"
+agent_port: 9001
+
+# Once this machine's disk usage (percent used on the drive holding
+# the first scan_paths entry) crosses this number, the agent
+# collects flagged files and pushes a report - nothing is sent while
+# usage stays below this.
+disk_threshold: 80.0
+
+# How often (seconds) the background loop checks disk usage.
+check_interval_seconds: 300
+
+# Folders this agent is allowed to scan and, later, clean up inside.
+# Every proposed action is checked against this list both centrally
+# and again here before anything is touched - a file outside these
+# paths can never be acted on, no matter what a report claims.
+scan_paths:
+  - "/var/log"
+  - "/tmp"
+  - "/home"
+
+# Skip tiny files entirely so reports stay focused on what's actually
+# worth a human's attention.
+min_file_size_mb: 1.0
+
+# UIDs below this are treated as protected system accounts (root,
+# daemon, www-data, etc. on virtually every mainstream distro) and
+# are never proposed for cleanup, matching policy.json's min_uid.
+protected_uids_below: 1000
