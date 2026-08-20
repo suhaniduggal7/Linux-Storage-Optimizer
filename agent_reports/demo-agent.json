@@ -1,0 +1,50 @@
+{
+  "hostname": "demo-agent",
+  "disk_usage_percent": 88.4,
+  "target_usage": 70.0,
+  "received_at": 1787025344.8390036,
+  "total_flagged": 4,
+  "approved": [
+    {
+      "action": "compress",
+      "path": "/var/log/demo-app/access.log",
+      "size_mb": 152.4,
+      "age_days": 61.0,
+      "type": "log",
+      "owner": "demo",
+      "uid": 1001,
+      "reason": "AI recommended compress (risk: high, score: 70)"
+    },
+    {
+      "action": "compress",
+      "path": "/var/cache/demo-app/build-cache.bin",
+      "size_mb": 340.2,
+      "age_days": 95.0,
+      "type": "cache",
+      "owner": "demo",
+      "uid": 1001,
+      "reason": "AI recommended archive (risk: high, score: 85)"
+    },
+    {
+      "action": "compress",
+      "path": "/home/demo/backups/db-2025-01.bak",
+      "size_mb": 890.0,
+      "age_days": 210.0,
+      "type": "backup",
+      "owner": "demo",
+      "uid": 1001,
+      "reason": "AI recommended archive (risk: high, score: 100)"
+    },
+    {
+      "action": "compress",
+      "path": "/tmp/demo-session-882.tmp",
+      "size_mb": 4.1,
+      "age_days": 45.0,
+      "type": "tmp",
+      "owner": "demo",
+      "uid": 1001,
+      "reason": "AI recommended compress (risk: low, score: 30)"
+    }
+  ],
+  "rejected": []
+}
